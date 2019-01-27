@@ -10,7 +10,6 @@ import {prepareFeedback} from "./backend/convertChatHistory.js";
 import {startConnectionToBot} from "./backend/startConnectionToBot";
 // import {receiveActivitiesFromBot} from "./backend/receiveActivitiesFromBot";
 // import {sendActivityToBot} from "./backend/sendActivityToBot";
-import {endOfConversation} from "./backend/endOfConversation";
 
 const {
     Header, Footer, Sider, Content,
