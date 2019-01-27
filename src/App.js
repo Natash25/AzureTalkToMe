@@ -6,8 +6,12 @@ import {Breadcrumb, Layout, Menu} from "antd";
 import Bot from './bot.js';
 // import recorder from "./backend/AudioTransformer.js";
 import {requestToTextAnalytics} from "./backend/textAnalyticsSentiment.js";
+
 import {startConnectionToBot} from "./backend/startConnectionToBot.js";
 import {sendActivityToBot} from "./backend/sendActivityToBot";
+import {convertChatHistory} from "./backend/convertChatHistory.js";
+import {prepareFeedback} from "./backend/convertChatHistory.js";
+import {startConnectionToBot} from "./backend/startConnectionToBot";
 
 const {
     Header, Footer, Sider, Content,
@@ -17,6 +21,10 @@ class App extends Component {
 
   render() {
     requestToTextAnalytics();
+    // TODO: add history json from chat bot later
+    convertChatHistory("", "", "bot1");
+    prepareFeedback("", "user1", "bot1");
+
     startConnectionToBot();
       // recorder();
     return (
