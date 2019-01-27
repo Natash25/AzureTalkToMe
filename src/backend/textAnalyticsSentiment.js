@@ -17,6 +17,7 @@
 // }
 
 
+
 export const requestToTextAnalytics = function() {
 
     fetch('https://centralus.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment', {
@@ -64,22 +65,10 @@ export const requestToTextAnalytics = function() {
             let sentences = analyzeSentences(data);
             let overallScore = computeOverallScore(data);
             let rank = computeRank(overallScore);
-            console.log('rank = ' + rank);
-            // console.log(overallScore);
             let analytics = { sentences: sentences, overallScore: overallScore};
             return renderAnalytics(analytics, rank);
-            // return analytics; // [analyzeSentences(data), computeOverallScore(data)];
         })
         .catch(error => console.error(error))
-
-    // .then(data => {
-    //   let sentiments = data.results.map((feeling) => {
-    //     return(
-    //       <div key={feeling.results}>
-    //       feeling.
-    //     )
-    //   })
-    // })
 };
 
 function analyzeSentences(data) {

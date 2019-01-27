@@ -7,6 +7,7 @@ import {convertChatHistory} from "../backend/convertChatHistory.js";
 import {prepareFeedback} from "../backend/convertChatHistory.js";
 import { Button } from 'antd';
 
+
 export default class Azure extends React.Component {
  
   render() {
@@ -22,6 +23,7 @@ export default class Azure extends React.Component {
         <UserProfile />
         <DisplayStatTrendCard />
         <DisplayStatCard />
+
       <div className='azure-title'>Welcome to Chat Improve</div>
         <Button type="primary" onClick={requestToTextAnalytics}>Get results!</Button>
         <div id="render-here"></div>

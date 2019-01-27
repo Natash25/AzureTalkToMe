@@ -13,18 +13,6 @@ const {
 class App extends Component {
 
   render() {
-    // function renderAnalytics() {
-    //     let analytics = requestToTextAnalytics();
-    //     // console.log(JSON.stringify(analytics));
-    //     let div = document.createElement('div');
-    //     let text = JSON.stringify(analytics['overallScore']);
-    //     let textNode = document.createTextNode(text);
-    //     div.appendChild(textNode);
-    //     document.getElementById("render-here").appendChild(div);
-    // }
-
-
-      // recorder();
     return (
       <div className="App">
           <Layout style={{ minHeight: '100vh' }}>
