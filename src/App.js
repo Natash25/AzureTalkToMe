@@ -3,6 +3,8 @@ import Sidebar from './component/Sidebar';
 import './App.css';
 import Azure from './component/azure.js';
 import {Breadcrumb, Layout, Menu} from "antd";
+import recorder from "./backend/AudioTransformer.js";
+
 const {
     Header, Footer, Sider, Content,
 } = Layout;
@@ -11,12 +13,11 @@ class App extends Component {
 
 
   render() {
+      recorder();
     return (
       <div className="App">
           <Layout style={{ minHeight: '100vh' }}>
-              <Sider
-
-              >
+              <Sider>
                 <Sidebar/>
               </Sider>
               <Layout>
