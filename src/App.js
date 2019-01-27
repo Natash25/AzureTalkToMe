@@ -4,6 +4,8 @@ import './App.css';
 import Azure from './component/azure.js';
 import {Breadcrumb, Layout, Menu} from "antd";
 import Bot from './bot.js';
+// import recorder from "./backend/AudioTransformer.js";
+import {requestToTextAnalytics} from "./backend/textAnalyticsSentiment.js";
 
 const {
     Header, Footer, Sider, Content,
@@ -12,6 +14,8 @@ const {
 class App extends Component {
 
   render() {
+    requestToTextAnalytics();
+      // recorder();
     return (
       <div className="App">
           <Layout style={{ minHeight: '100vh' }}>
