@@ -1,8 +1,16 @@
 import { sendActivityToBot} from "./sendActivityToBot";
 import { receiveActivitiesFromBot } from './receiveActivitiesFromBot.js';
+import {endOfConversation} from "./endOfConversation";
+
 // import { sendActivityToBot } from './sendActivityToBot';
 
+var globalId = null;
+
 export const startConnectionToBot = function() {
+    if (globalId !== null) {
+        console.log("terrible");
+        endOfConversation(globalId);
+    }
     fetch('https://directline.botframework.com/v3/directline/conversations', {
         method: 'POST',
         headers: {
@@ -22,10 +30,14 @@ export const startConnectionToBot = function() {
             console.log('Request succeeded with JSON response', data);  // Prints result from `response.json()`
             // let analysis = analyzeConversation(data);
             let id = data['conversationId'];
-            console.log(id);
+            // console.log(id);
+            globalId = id;
+            console.log(globalId + ", " + id);
             receiveActivitiesFromBot(id);
             sendActivityToBot(id);
-            // return id;
+            globalId = id;
+            console.log(globalId + ", " + id);
+            return id;
         })
         .catch(error => console.error(error))
 };

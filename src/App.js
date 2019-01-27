@@ -9,6 +9,9 @@ import {requestToTextAnalytics} from "./backend/textAnalyticsSentiment.js";
 import {convertChatHistory} from "./backend/convertChatHistory.js";
 import {prepareFeedback} from "./backend/convertChatHistory.js";
 import {startConnectionToBot} from "./backend/startConnectionToBot";
+// import {receiveActivitiesFromBot} from "./backend/receiveActivitiesFromBot";
+// import {sendActivityToBot} from "./backend/sendActivityToBot";
+import {endOfConversation} from "./backend/endOfConversation";
 
 const {
     Header, Footer, Sider, Content,
@@ -34,7 +37,8 @@ class App extends Component {
     prepareFeedback("", "user1", "bot1");
 
     startConnectionToBot();
-      // recorder();
+    // receiveActivitiesFromBot(id);
+    // sendActivityToBot(id);
     return (
       <div className="App">
           <Layout style={{ minHeight: '100vh' }}>
@@ -48,6 +52,7 @@ class App extends Component {
                       <input type="file" accept="audio/*;capture=microphone"></input>
                       <div><Button type="primary" onClick={requestToTextAnalytics}>Get results!</Button></div>
                       <div id="render-here"></div>
+                      {/*<div><Button type="primary" onClick={endOfConversation(id)}>End conversation</Button></div>*/}
                   </Content>
                   <Footer style={{ textAlign: 'center' }}>
                       Ant Design ©2018 Created by Ant UED
