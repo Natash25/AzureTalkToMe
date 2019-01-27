@@ -7,7 +7,6 @@ import Bot from './bot.js';
 // import recorder from "./backend/AudioTransformer.js";
 import {requestToTextAnalytics} from "./backend/textAnalyticsSentiment.js";
 
-import {startConnectionToBot} from "./backend/startConnectionToBot.js";
 import {sendActivityToBot} from "./backend/sendActivityToBot";
 import {convertChatHistory} from "./backend/convertChatHistory.js";
 import {prepareFeedback} from "./backend/convertChatHistory.js";

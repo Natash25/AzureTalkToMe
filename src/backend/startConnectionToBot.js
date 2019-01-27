@@ -1,4 +1,6 @@
 import { sendActivityToBot} from "./sendActivityToBot";
+import { receiveActivitiesFromBot } from './receiveActivitiesFromBot.js';
+// import { sendActivityToBot } from './sendActivityToBot';
 
 export const startConnectionToBot = function() {
     fetch('https://directline.botframework.com/v3/directline/conversations', {
@@ -6,26 +8,24 @@ export const startConnectionToBot = function() {
         headers: {
             'Content-Type': 'application/json',
             'Ocp-Apim-Subscription-Key': 'd89d45bffb674f788bc3be1ad2e55963',
-            'Authorization': 'Bearer RCurR_XV9ZA.cwA.BKA.iaJrC8xpy8qbOF5xnR2vtCX7CZj0LdjAPGfiCpg4Fv0y8qbOF5xPGfiCpg4Fv0y8qqbOF5x8qbOF5xn'
+            'Authorization': 'Bearer -o2rlZdRXVk.cwA.FsU.VFpMLHbLnBUgHKtGfi2a4_Cv9KaKbcdn9Qh_q7K91S0'
 
     }
-    }).then(response => {
-        console.log("natasha " + JSON.stringify(response));
-
-        let temp = null;
-        const res = response.json();
-            res.then(function (r) {
-                temp = JSON.parse(r);
-                console.log("asdasdas " + r);
-            })
-                .catch(function (e) {
-                    console.log(e);
-                });
-            if (res !== null) {
-                sendActivityToBot(res.conversationId);
-            }
-        // sendActivityToBot();
-        //     console.log((res));
+    }).then(function (response) {
+        if (response.status >= 200 && response.status < 300) {
+            return Promise.resolve(response)
+        } else {
+            return Promise.reject(new Error(response.statusText))
+        }
+    }).then(response => response.json())
+        .then(function (data) {
+            console.log('Request succeeded with JSON response', data);  // Prints result from `response.json()`
+            // let analysis = analyzeConversation(data);
+            let id = data['conversationId'];
+            console.log(id);
+            receiveActivitiesFromBot(id);
+            sendActivityToBot(id);
+            // return id;
         })
         .catch(error => console.error(error))
 };

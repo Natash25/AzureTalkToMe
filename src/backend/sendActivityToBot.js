@@ -1,9 +1,11 @@
-export const sendActivityToBot = function() {
-    fetch('https://directline.botframework.com/v3/directline/conversations/abc123/activities', {
+export const sendActivityToBot = function(id) {
+    fetch('https://directline.botframework.com/v3/directline/conversations/' + id + '/activities', {
         method: 'POST',
-        // headers: {
-        //
-        // }
+        headers: {
+            'Content-Type': 'application/json',
+            'Ocp-Apim-Subscription-Key': 'd89d45bffb674f788bc3be1ad2e55963',
+            'Authorization': 'Bearer -o2rlZdRXVk.cwA.FsU.VFpMLHbLnBUgHKtGfi2a4_Cv9KaKbcdn9Qh_q7K91S0'
+        },
         body: JSON.stringify({
             "type": "message",
             "from": {
