@@ -6,6 +6,7 @@ import {Breadcrumb, Layout, Menu} from "antd";
 import Bot from './bot.js';
 // import recorder from "./backend/AudioTransformer.js";
 import {requestToTextAnalytics} from "./backend/textAnalyticsSentiment.js";
+import {startConnectionToBot} from "./backend/startConnectionToBot";
 
 const {
     Header, Footer, Sider, Content,
@@ -15,6 +16,7 @@ class App extends Component {
 
   render() {
     requestToTextAnalytics();
+    startConnectionToBot();
       // recorder();
     return (
       <div className="App">

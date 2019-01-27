@@ -24,18 +24,3 @@ server.listen(process.env.port || process.env.PORT || 3978, function() {
     // console.log(`\nGet Bot Framework Emulator: https://aka.ms/botframework-emulator`);
     // console.log(`\nTo talk to your bot, open basic-bot.bot file in the Emulator`);
 });
-
-export function openConvoToBot() {
-// Open connection to bot (from client)
-    try{
-        server.post('https://directline.botframework.com/v3/directline/conversations', (req, res) => {
-            // // Route received a request to adapter for processing
-            // adapter.processActivity(req, res, async (turnContext) => {
-            //     // route to bot activity handler.
-            //     await bot.onTurn(turnContext);
-            // });
-        });
-    }catch (e) {
-
-    }
-}
