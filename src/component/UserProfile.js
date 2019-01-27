@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {Avatar} from "antd";
 
 export default class UserProfile extends React.Component {
