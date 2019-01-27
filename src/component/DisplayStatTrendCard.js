@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 import {Avatar, Button, Col, Row, Statistic} from "antd";
+// import React, {Component} from 'react';
+//
+// class textAnalyticsSentiment extends Component {
+//   constructor() {
+//     super();
+//     this.state = {
+//       array: [],
+//     };
+//   }
+
+ 
 
 export default class DisplayStatTrendCard extends React.Component {
-
-
     render() {
         return (
             <div className="StatTrend">

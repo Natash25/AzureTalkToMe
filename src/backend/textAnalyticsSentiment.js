@@ -8,13 +8,13 @@
 //     };
 //   }
 
-function status(response) {
-    if (response.status >= 200 && response.status < 300) {
-        return Promise.resolve(response)
-    } else {
-        return Promise.reject(new Error(response.statusText))
-    }
-}
+// function status(response) {
+//     if (response.status >= 200 && response.status < 300) {
+//         return Promise.resolve(response)
+//     } else {
+//         return Promise.reject(new Error(response.statusText))
+//     }
+// }
 
 
 export const requestToTextAnalytics = function() {
@@ -58,7 +58,6 @@ export const requestToTextAnalytics = function() {
         )
 
     })
-        .then(status)
         .then(response => response.json())
         .then(function (data) {
             console.log('Request succeeded with JSON response', data);  // Prints result from `response.json()`
