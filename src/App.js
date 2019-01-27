@@ -6,7 +6,8 @@ import {Breadcrumb, Layout, Menu} from "antd";
 import Bot from './bot.js';
 // import recorder from "./backend/AudioTransformer.js";
 import {requestToTextAnalytics} from "./backend/textAnalyticsSentiment.js";
-import {startConnectionToBot} from "./backend/startConnectionToBot";
+import {startConnectionToBot} from "./backend/startConnectionToBot.js";
+import {sendActivityToBot} from "./backend/sendActivityToBot";
 
 const {
     Header, Footer, Sider, Content,
