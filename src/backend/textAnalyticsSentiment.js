@@ -7,6 +7,14 @@
 //       array: [],
 //     };
 //   }
+function status(response) {
+    if (response.status >= 200 && response.status < 300) {
+      return Promise.resolve(response)
+    } else {
+      return Promise.reject(new Error(response.statusText))
+    }
+  }
+
 
 export const requestToTextAnalytics = function() {
 
@@ -50,10 +58,12 @@ export const requestToTextAnalytics = function() {
 
 
     })
+    .then(status)
     .then(response => response.json())
-    .then(data => {
-        
-      console.log(data) // Prints result from `response.json()`
+    .then(function (data) {
+    console.log('Request succeeded with JSON response', data);  // Prints result from `response.json()`
+    let analysis = analyzeConversation(data);
+    return data;
     })
     .catch(error => console.error(error))
 
@@ -65,5 +75,28 @@ export const requestToTextAnalytics = function() {
   //     )
   //   })
   // })
+}
+
+function analyzeConversation(data) {
+    let analystics = null;
+    for(var i = 0; i < data.length; i++) {
+        var obj = data[i];
+        let score = obj.score;
+        let msg = '';
+        if (score < 0.2) {
+            msg = 'Your tone tells me that you do not feel so confident. Using a clear voice may help!';
+        } else if (score < 0.4) {
+            msg = 'do later';
+        } else if (score < 0.6) {
+            msg = 'do later';
+        } else if (score < 0.8) {
+            msg = 'do later';
+        } else {
+            msg = 'You sound very confident! Keep it up!';
+        }
+        analytics[obj.id] = msg;
+        console.log(obj.id);
+    }
+    return null; // todo: finish
 }
 // }
