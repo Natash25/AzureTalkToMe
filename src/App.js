@@ -10,7 +10,6 @@ import {requestToTextAnalytics} from "./backend/textAnalyticsSentiment.js";
 import {sendActivityToBot} from "./backend/sendActivityToBot";
 import {convertChatHistory} from "./backend/convertChatHistory.js";
 import {prepareFeedback} from "./backend/convertChatHistory.js";
-import {startConnectionToBot} from "./backend/startConnectionToBot";
 
 const {
     Header, Footer, Sider, Content,
