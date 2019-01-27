@@ -7,6 +7,7 @@
 //       array: [],
 //     };
 //   }
+
 function status(response) {
     if (response.status >= 200 && response.status < 300) {
         return Promise.resolve(response)
@@ -63,9 +64,11 @@ export const requestToTextAnalytics = function() {
             console.log('Request succeeded with JSON response', data);  // Prints result from `response.json()`
             let sentences = analyzeSentences(data);
             let overallScore = computeOverallScore(data);
+            let rank = computeRank(overallScore);
+            console.log('rank = ' + rank);
             // console.log(overallScore);
             let analytics = { sentences: sentences, overallScore: overallScore};
-            return renderAnalytics(analytics);
+            return renderAnalytics(analytics, rank);
             // return analytics; // [analyzeSentences(data), computeOverallScore(data)];
         })
         .catch(error => console.error(error))
@@ -108,6 +111,10 @@ function computeOverallScore(data) {
     return sum / length;
 }
 
+function computeRank(overallScore) {
+    return parseInt((overallScore * 10).toString());
+}
+
 function getMessage(score) {
     let msg = '';
     if (score < 0.4) {
@@ -122,9 +129,7 @@ function getMessage(score) {
     return msg;
 }
 
-function renderAnalytics(analytics) {
-    // console.log();
-    // let analytics = requestToTextAnalytics();
+function renderAnalytics(analytics, rank) {
     // console.log(JSON.stringify(analytics));
     let div = document.getElementById("render-here");
 
@@ -145,5 +150,7 @@ function renderAnalytics(analytics) {
     div.appendChild(scoreNode);
     div.appendChild(br);
     div.appendChild(msgNode);
-    // document.getElementById("render-here").appendChild(div);
+
+    let rankElement = document.getElementById('rank');
+    rankElement.innerText = 'Level ' + rank;
 }

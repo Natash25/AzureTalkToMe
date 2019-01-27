@@ -9,7 +9,7 @@ export default class UserProfile extends React.Component {
             <div className="UserProfile">
                 <Avatar style={{ backgroundColor: '#87d068'}} icon="user"/>
                 <div className='UserName'>Bob Alex</div>
-                <div className='Rank'>Level 2</div>
+                <div id="rank" className='Rank'>Level </div>
             </div>
         );
     }
