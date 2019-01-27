@@ -3,24 +3,23 @@ import Sidebar from './component/Sidebar';
 import './App.css';
 import Azure from './component/azure.js';
 import {Breadcrumb, Layout, Menu} from "antd";
+import Bot from './bot.js';
+
 const {
     Header, Footer, Sider, Content,
 } = Layout;
 
 class App extends Component {
 
-
   render() {
     return (
       <div className="App">
           <Layout style={{ minHeight: '100vh' }}>
-              <Sider
-
-              >
+              <Sider>
                 <Sidebar/>
               </Sider>
               <Layout>
-                  <Header style={{ background: '#fff', padding: 0 }} />
+                  <Header style={{ background: '#fff', padding: 0 }} />]
                   <Content style={{ margin: '0 16px' }}>
                     <Azure/>
                   </Content>

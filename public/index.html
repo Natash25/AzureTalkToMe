@@ -11,7 +11,7 @@
 
   <!-- <speechsdkref> -->
   <!-- Speech SDK reference sdk. -->
-  <script src="SpeechSDK-JavaScript-1.2.1/microsoft.cognitiveservices.speech.sdk.bundle.js"></script>
+
   <!-- </speechsdkref> -->
 
   <!-- <authorizationfunction> -->
@@ -24,6 +24,15 @@
   <!-- Speech SDK USAGE -->
   <script src="SpeechSDKUsage.js"></script>
   <!-- </quickstartcode> -->
-  <div id="root"></div>
+  <div id="root"></div><script src="SpeechSDK-JavaScript-1.2.1/microsoft.cognitiveservices.speech.sdk.bundle.js"></script>
+  <div id="webchat" role="main"></div>
+  <script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
+  <script>
+      window.WebChat.renderWebChat({
+          directLine: window.WebChat.createDirectLine({ secret: 'aNNM2PiaSdo.cwA.EP0.cBRSLtHR5MwtK0Q4Yf1YFjIDTraiw0Fqun6iExHqYXo'}),
+          userID: 'default-user'
+      }, document.getElementById('webchat'));
+  </script>
+
 </body>
 </html>
