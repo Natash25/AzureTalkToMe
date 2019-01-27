@@ -1,7 +1,19 @@
 import * as React from 'react';
+import UserProfile from "./UserProfile";
+import DisplayStatTrendCard from "./DisplayStatTrendCard";
+import DisplayStatCard from "./DisplayStatCard";
 
-class Azure extends React.Component {
+
+export default class Azure extends React.Component {
   render(){
-    return (<div></div>);
+    return (
+        <div>
+            <br/><br/>
+          <UserProfile/>
+          {/*<DisplayStatTrendCard/>*/}
+          {/*<DisplayStatCard/>*/}
+      <div className='azure-title'>Welcome to Chat Improve</div>
+
+    </div>);
   }
 }

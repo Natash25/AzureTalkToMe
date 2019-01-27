@@ -1,0 +1,61 @@
+{
+  "name": "bestFriendBot",
+  "padlock": "XUmnWvynnSP6x5NLnkneyw==!cefVpnAlD/XGiqodiQaEcL+0DMA5ZA6wu4O6AQ8yRzDK/UN8dQmoRhCpmPHkgqdM",
+  "version": "2.0",
+  "services": [
+    {
+      "tenantId": "8314df88-9fbf-43a2-afba-286f37eecb32",
+      "subscriptionId": "23c8867a-9f83-4d60-93f2-71335e58f695",
+      "resourceGroup": "chatFunctionResource",
+      "serviceName": "bestFriendBot",
+      "type": "abs",
+      "name": "bestFriendBot",
+      "id": "1"
+    },
+    {
+      "connectionString": "AbjBNgPbZuHvkPsQ+/C2CQ==!yVd7izTncME83gq+aWs+gk88KejY4HtM6Dbhrve/tz44lRoxxiESPZeg0MmLwniLrS9Gy1qMWgvunqDqutwHE7Ae4phP2chowWf5Y5EDwp/uWSS7UeIVAo3DEki4REp/timu6ZhLKk1DziWgw5ciHl9bbu5SOXcISGea0V0HqNA9ur5Hd+UKWdmmE3159gqXW8anV0q0OKqydCaMPDDkuohMFbU7CrawllpA2HIVgvY=",
+      "tenantId": "8314df88-9fbf-43a2-afba-286f37eecb32",
+      "subscriptionId": "23c8867a-9f83-4d60-93f2-71335e58f695",
+      "resourceGroup": "chatFunctionResource",
+      "serviceName": "bestfriendbotanalytics",
+      "type": "blob",
+      "id": "2"
+    },
+    {
+      "appId": "",
+      "appPassword": "",
+      "endpoint": "http://localhost:3978/api/messages",
+      "type": "endpoint",
+      "name": "development",
+      "id": "3"
+    },
+    {
+      "appId": "d0565c70-ad48-425e-8db2-924ed5d1df17",
+      "appPassword": "i6RybXYn58NljQIy8Eg18g==!HR1/BCUu9FvdvGMMTava7QD4CsXtU56+eKLVqmZxLvg=",
+      "endpoint": "https://bestfriendbot.azurewebsites.net/api/messages",
+      "type": "endpoint",
+      "name": "production",
+      "id": "4"
+    },
+    {
+      "instrumentationKey": "JgHuB+EuTtKtr8YHU3j7aw==!0uO7kFa2lngyD7w8rVRQqtj0uEz6y8m1X2nPDos4ZNr7fWvsHIB6Nz/WJij/c1kh",
+      "applicationId": "81ea2b56-787a-404b-beb5-d8d138d9712f",
+      "apiKeys": {},
+      "tenantId": "8314df88-9fbf-43a2-afba-286f37eecb32",
+      "subscriptionId": "23c8867a-9f83-4d60-93f2-71335e58f695",
+      "resourceGroup": "chatFunctionResource",
+      "serviceName": "bestFriendBot3yd4ap",
+      "type": "appInsights",
+      "id": "5"
+    },
+    {
+      "appId": "dac9a1b7-e724-442f-b068-5334aefe1b5c",
+      "authoringKey": "PYE5qsk9YppPnyDA1yOD+A==!ciUjk7BXwWF5vgi9bX2SkObAleGkMKJYpgUD+3afm+9TYUqZzVv7fAil8ADgBZJO",
+      "version": "0.1",
+      "region": "westus",
+      "type": "luis",
+      "name": "BasicBotLuisApplication",
+      "id": "6"
+    }
+  ]
+}
