@@ -1,26 +1,34 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Sidebar from './component/Sidebar';
 import './App.css';
-import azure from './component/azure.js';
+import Azure from './component/azure.js';
+import {Breadcrumb, Layout, Menu} from "antd";
+const {
+    Header, Footer, Sider, Content,
+} = Layout;
+
 class App extends Component {
+
+
   render() {
     return (
       <div className="App">
-      <azure></azure>
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+          <Layout style={{ minHeight: '100vh' }}>
+              <Sider
+
+              >
+                <Sidebar/>
+              </Sider>
+              <Layout>
+                  <Header style={{ background: '#fff', padding: 0 }} />
+                  <Content style={{ margin: '0 16px' }}>
+                    <Azure/>
+                  </Content>
+                  <Footer style={{ textAlign: 'center' }}>
+                      Ant Design ©2018 Created by Ant UED
+                  </Footer>
+              </Layout>
+          </Layout>
       </div>
     );
   }
