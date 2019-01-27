@@ -1,20 +1,4 @@
-// import React, {Component} from 'react';
-//
-// class textAnalyticsSentiment extends Component {
-//   constructor() {
-//     super();
-//     this.state = {
-//       array: [],
-//     };
-//   }
 
-// function status(response) {
-//     if (response.status >= 200 && response.status < 300) {
-//         return Promise.resolve(response)
-//     } else {
-//         return Promise.reject(new Error(response.statusText))
-//     }
-// }
 
 
 
@@ -103,7 +87,7 @@ function computeRank(overallScore) {
     return parseInt((overallScore * 10).toString());
 }
 
-function getMessage(score) {
+export function getMessage(score) {
     let msg = '';
     if (score < 0.4) {
         msg = 'Your tone tells me that you do not feel so confident. Remember to breath! Slow down, stand up straight and end on a downbeat!';

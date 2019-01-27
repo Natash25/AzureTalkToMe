@@ -2,7 +2,7 @@ import { Statistic, Card, Row, Col, Icon } from 'antd';
 
 import React, { Component } from 'react';
 import {Avatar} from "antd";
-
+import { randomBytes } from 'crypto';
 
 // export function status(response) {
 //     if (response.status >= 200 && response.status < 300) {
@@ -109,7 +109,7 @@ export function analyzeSentences(data) {
  export function computeRank(overallScore) {
     return parseInt((overallScore * 10).toString());
 }
- export function getMessage(score) {
+  function getMessage(score) {
     let msg = '';
     if (score < 0.4) {
         msg = 'Your tone tells me that you do not feel so confident. Remember to breath! Slow down, stand up straight and end on a downbeat!';
@@ -153,9 +153,10 @@ export function analyzeSentences(data) {
 export default class DisplayStatCard extends React.Component {
 
    state = {
-    overallScore: 0,
+    currentScore: 0,
     level: "",
-    message: ""
+    message: "",
+    icons: <div></div>
    }
 // import React, {Component} from 'react';
 //
@@ -166,22 +167,48 @@ export default class DisplayStatCard extends React.Component {
 //       array: [],
 //     };
 //   }
+formatArrow(currentScore){
+    if(currentScore >= 0){
+        return <Icon type="arrow-up" />
+    }
+    return <Icon type="arrow-down" />
+}
+
+updateScore = () => {
+    //Updating score
+    this.setState({ currentScore: Math.random(0, 1), icons: this.formatArrow(this.state.currentScore), level: (parseInt( this.state.level+1))},
+    ()=>{this.updateMessage(this.state.currentScore)});
+    }
+
+updateMessage = (score)=>{
+    let msg ='';
+    if (score < 0.4) {
+        msg = 'Your tone tells me that you do not feel so confident. Remember to breath! Slow down, stand up straight and end on a downbeat!';
+    } else if (score < 0.6) {
+        msg = 'I hear a little uncertainty in your voice. If you feel rushed, try taking a deep breath.';
+    } else if (score < 0.8) {
+        msg = 'Just a little more! Get that confidence booming!';
+    } else {
+        msg = 'You sound very confident! Keep it up!';
+    }
+    this.setState({message: msg});
+}
+
+
 
 
 render(){
     return(
-        <div style={{ background: '#ECECEC', padding: '30px' }}>
+        <div style={{ background: '#ECECEC', padding: '30px' }} onClick={this.updateScore}>
         <Row gutter={16}>
             <Col span={12}>
                 <Card>
-                    
                     <Statistic
-                        title="Your overall score: "
-                        value={this.state.overallScore}
+                        title="Your current score: "
+                        value={this.state.currentScore}
                         precision={2}
                         valueStyle={{ color: '#3f8600' }}
-                        prefix={<Icon type="arrow-up" />}
-                        suffix="%"
+                        prefix={this.state.icons}
                     />
                 </Card>
             </Col>
@@ -191,13 +218,14 @@ render(){
                         title="Your current level"
                         value={this.state.level}
                         precision={1}
-                        valueStyle={{ color: '#cf1322' }}
-                        prefix={<Icon type="arrow-down" />}
-                        suffix="%"
+                        valueStyle={{ color: '#3f8600' }}
+                        prefix={this.state.icons}
                     />
                 </Card>
             </Col>
         </Row>
+        <br /><br />
+        <div style={{alignContent: 'center', fontSize: "30px", fontWeight: 'bold'}}>{this.state.message}</div>
     </div>);
     }
 }

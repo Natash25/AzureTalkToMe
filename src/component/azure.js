@@ -5,8 +5,7 @@ import DisplayStatCard from "./DisplayStatCard.js";
 import { requestToTextAnalytics } from "./DisplayStatCard.js";
 import {convertChatHistory} from "../backend/convertChatHistory.js";
 import {prepareFeedback} from "../backend/convertChatHistory.js";
-import { Button } from 'antd';
-
+import { startConnectionToBot } from '../backend/startConnectionToBot.js';
 
 export default class Azure extends React.Component {
  
@@ -16,17 +15,14 @@ export default class Azure extends React.Component {
     convertChatHistory("", "user1", "bot1");
     prepareFeedback("", "user1", "bot1");//"", "user1", "bot1"
   
-    //startConnectionToBot();
+    startConnectionToBot();
     return (
-      <div>
+      <div> <div className='azure-title' style={{fontSize: "20px", padding: '20px'}}>Welcome to Azure Talk</div>
         <br /><br />
         <UserProfile />
-        <DisplayStatTrendCard />
-        <DisplayStatCard />
-
-      <div className='azure-title'>Welcome to Chat Improve</div>
-        <Button type="primary" onClick={requestToTextAnalytics}>Get results!</Button>
+        <DisplayStatCard />        
         <div id="render-here"></div>
       </div>);
   }
 }
+//<Button type="primary" onClick={requestToTextAnalytics}>Get results!</Button>

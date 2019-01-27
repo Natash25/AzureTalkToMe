@@ -6,8 +6,8 @@ export default class Sidebar extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <div className="logo" />
-                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+                <div className="logo"/>
+                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" >
                     <Menu.Item key="1">
                         <Icon type="home" />
                         <span>Dashboard</span>

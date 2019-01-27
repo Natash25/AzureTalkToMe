@@ -41,5 +41,5 @@ const convertToText = (blob) => {
 //         <Recorder onStop={convertToText} />
 //     </div>
 // );
-// export default convertToText(wav);
+export default convertToText(wav);
 

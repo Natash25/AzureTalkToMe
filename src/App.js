@@ -20,12 +20,10 @@ class App extends Component {
                 <Sidebar/>
               </Sider>
               <Layout>
-                  <Header style={{ background: '#fff', padding: 0 }} />]
                   <Content style={{ margin: '0 16px' }}>
                     <Azure/>
                   </Content>
                   <Footer style={{ textAlign: 'center' }}>
-                      Ant Design ©2018 Created by Ant UED
                   </Footer>
               </Layout>
           </Layout>
