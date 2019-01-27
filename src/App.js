@@ -3,10 +3,12 @@ import Sidebar from './component/Sidebar';
 import './App.css';
 import Azure from './component/azure.js';
 import {Breadcrumb, Layout, Menu} from "antd";
+import Bot from './bot.js';
 // import recorder from "./backend/AudioTransformer.js";
 import {requestToTextAnalytics} from "./backend/textAnalyticsSentiment.js";
 import {convertChatHistory} from "./backend/convertChatHistory.js";
 import {prepareFeedback} from "./backend/convertChatHistory.js";
+import {startConnectionToBot} from "./backend/startConnectionToBot";
 
 const {
     Header, Footer, Sider, Content,
@@ -20,6 +22,7 @@ class App extends Component {
     convertChatHistory("", "", "bot1");
     prepareFeedback("", "user1", "bot1");
 
+    startConnectionToBot();
       // recorder();
     return (
       <div className="App">
@@ -28,7 +31,7 @@ class App extends Component {
                 <Sidebar/>
               </Sider>
               <Layout>
-                  <Header style={{ background: '#fff', padding: 0 }} />
+                  <Header style={{ background: '#fff', padding: 0 }} />]
                   <Content style={{ margin: '0 16px' }}>
                     <Azure/>
                   </Content>

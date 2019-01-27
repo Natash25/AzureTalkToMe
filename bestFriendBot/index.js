@@ -44,7 +44,7 @@ const BOT_CONFIGURATION = (process.env.NODE_ENV || DEV_ENVIRONMENT);
 // Get bot endpoint configuration by service name
 const endpointConfig = botConfig.findServiceByNameOrId(BOT_CONFIGURATION);
 
-// Create adapter. 
+// Create adapter.
 // See https://aka.ms/about-bot-adapter to learn more about .bot file its use and bot configuration .
 const adapter = new BotFrameworkAdapter({
     appId: endpointConfig.appId || process.env.microsoftAppID,
@@ -81,7 +81,7 @@ userState = new UserState(memoryStorage);
 // CAUTION: You must ensure your product environment has the NODE_ENV set
 //          to use the Azure Blob storage or Azure Cosmos DB providers.
 
-// Add botbuilder-azure when using any Azure services. 
+// Add botbuilder-azure when using any Azure services.
 // const { BlobStorage } = require('botbuilder-azure');
 // // Get service configuration
 // const blobStorageConfig = botConfig.findServiceByNameOrId(STORAGE_CONFIGURATION_ID);
@@ -109,13 +109,18 @@ server.listen(process.env.port || process.env.PORT || 3978, function() {
     console.log(`\nTo talk to your bot, open basic-bot.bot file in the Emulator`);
 });
 
+export default async function extracted() {
+    console.log(('hi'));
 // Listen for incoming activities and route them to your bot main dialog.
-server.post('/api/messages', (req, res) => {
-    // Route received a request to adapter for processing
-    adapter.processActivity(req, res, async (turnContext) => {
-        // route to bot activity handler.
-        await bot.onTurn(turnContext);
-    });
-});
+   try{
+       server.post('/api/messages', (req, res) => {
+           // Route received a request to adapter for processing
+           adapter.processActivity(req, res, async (turnContext) => {
+               // route to bot activity handler.
+               await bot.onTurn(turnContext);
+           });
+       });
+   }catch (e) {
 
-
+   }
+}
