@@ -20,7 +20,7 @@ function isEven(n) {
  }
  
 
-export const convertChatHistory = function(data, chatbotID, userID) {
+export function convertChatHistory  (data, chatbotID, userID) {
     var inputJson = '{"activities":[{"type":"message","channelId":"directline","conversation":{"id":"abc123"},"id":"abc123|0000","from":{"id":"user1"},"text":"hello"},{"type":"message","channelId":"directline","conversation":{"id":"abc123"},"id":"abc123|0001","from":{"id":"bot1"},"text":"Nice to see you, user1!"}],"watermark":"0001a-95"}';
     //TODO: change inputjson to data after json file is good 
     var chatHistoryJson = JSON.parse(inputJson);
@@ -48,7 +48,7 @@ export const convertChatHistory = function(data, chatbotID, userID) {
     
 }
 
-export const prepareFeedback = function(data, chatbotID, userID) {
+export const prepareFeedback = (data, chatbotID, userID) => {
     var inputJson = '{"activities":[{"type":"message","channelId":"directline","conversation":{"id":"abc123"},"id":"abc123|0000","from":{"id":"user1"},"text":"hello"},{"type":"message","channelId":"directline","conversation":{"id":"abc123"},"id":"abc123|0001","from":{"id":"bot1"},"text":"Nice to see you, user1!"}],"watermark":"0001a-95"}';
     //TODO: change inputjson to data after json file is good 
     var chatHistoryJson = JSON.parse(inputJson);

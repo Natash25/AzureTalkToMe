@@ -22,7 +22,6 @@ export const startConnectionToBot = function() {
             console.log('Request succeeded with JSON response', data);  // Prints result from `response.json()`
             // let analysis = analyzeConversation(data);
             let id = data['conversationId'];
-            console.log(id);
             receiveActivitiesFromBot(id);
             sendActivityToBot(id);
             // return id;
