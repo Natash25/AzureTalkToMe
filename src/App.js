@@ -20,6 +20,17 @@ const {
 class App extends Component {
 
   render() {
+    // function renderAnalytics() {
+    //     let analytics = requestToTextAnalytics();
+    //     // console.log(JSON.stringify(analytics));
+    //     let div = document.createElement('div');
+    //     let text = JSON.stringify(analytics['overallScore']);
+    //     let textNode = document.createTextNode(text);
+    //     div.appendChild(textNode);
+    //     document.getElementById("render-here").appendChild(div);
+    // }
+
+
     requestToTextAnalytics();
     // TODO: add history json from chat bot later
     convertChatHistory("", "", "bot1");
@@ -37,6 +48,9 @@ class App extends Component {
                   <Header style={{ background: '#fff', padding: 0 }} />]
                   <Content style={{ margin: '0 16px' }}>
                     <Azure/>
+                      <input type="file" accept="audio/*;capture=microphone"></input>
+                      <div><Button type="primary" onClick={requestToTextAnalytics}>Get results!</Button></div>
+                      <div id="render-here"></div>
                   </Content>
                   <Footer style={{ textAlign: 'center' }}>
                       Ant Design ©2018 Created by Ant UED
