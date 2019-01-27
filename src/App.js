@@ -2,12 +2,9 @@ import React, { Component } from 'react';
 import Sidebar from './component/Sidebar';
 import './App.css';
 import Azure from './component/azure.js';
-import {Breadcrumb, Layout, Menu} from "antd";
-import Bot from './bot.js';
-// import recorder from "./backend/AudioTransformer.js";
+import {Layout, Button} from "antd";
 import {requestToTextAnalytics} from "./backend/textAnalyticsSentiment.js";
-
-import {sendActivityToBot} from "./backend/sendActivityToBot";
+import {startConnectionToBot} from "./backend/startConnectionToBot.js";
 import {convertChatHistory} from "./backend/convertChatHistory.js";
 import {prepareFeedback} from "./backend/convertChatHistory.js";
 
@@ -18,17 +15,6 @@ const {
 class App extends Component {
 
   render() {
-    // function renderAnalytics() {
-    //     let analytics = requestToTextAnalytics();
-    //     // console.log(JSON.stringify(analytics));
-    //     let div = document.createElement('div');
-    //     let text = JSON.stringify(analytics['overallScore']);
-    //     let textNode = document.createTextNode(text);
-    //     div.appendChild(textNode);
-    //     document.getElementById("render-here").appendChild(div);
-    // }
-
-
     requestToTextAnalytics();
     // TODO: add history json from chat bot later
     convertChatHistory("", "", "bot1");
