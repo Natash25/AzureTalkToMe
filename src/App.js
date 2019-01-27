@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import Sidebar from './component/Sidebar';
 import './App.css';
 import Azure from './component/azure.js';
-import {Breadcrumb, Layout, Menu} from "antd";
+import {Breadcrumb, Layout, Menu, Button} from "antd";
 import Bot from './bot.js';
 // import recorder from "./backend/AudioTransformer.js";
 import {requestToTextAnalytics} from "./backend/textAnalyticsSentiment.js";
-
-import {sendActivityToBot} from "./backend/sendActivityToBot";
 import {convertChatHistory} from "./backend/convertChatHistory.js";
 import {prepareFeedback} from "./backend/convertChatHistory.js";
 import {startConnectionToBot} from "./backend/startConnectionToBot";
