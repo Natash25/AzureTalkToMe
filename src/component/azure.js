@@ -8,9 +8,10 @@ export default class Azure extends React.Component {
   render(){
     return (
         <div>
+            <br/><br/>
           <UserProfile/>
-          <DisplayStatTrendCard/>
-          <DisplayStatCard/>
+          {/*<DisplayStatTrendCard/>*/}
+          {/*<DisplayStatCard/>*/}
       <div className='azure-title'>Welcome to Chat Improve</div>
 
     </div>);
