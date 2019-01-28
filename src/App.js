@@ -7,7 +7,7 @@ import {requestToTextAnalytics} from "./backend/textAnalyticsSentiment.js";
 import {startConnectionToBot} from "./backend/startConnectionToBot.js";
 import {convertChatHistory} from "./backend/convertChatHistory.js";
 import {prepareFeedback} from "./backend/convertChatHistory.js";
-import {startConnectionToBot} from "./backend/startConnectionToBot";
+// import {startConnectionToBot} from "./backend/startConnectionToBot";
 // import {receiveActivitiesFromBot} from "./backend/receiveActivitiesFromBot";
 // import {sendActivityToBot} from "./backend/sendActivityToBot";
 
@@ -20,8 +20,8 @@ class App extends Component {
   render() {
     requestToTextAnalytics();
     // TODO: add history json from chat bot later
-    convertChatHistory("", "", "bot1");
-    prepareFeedback("", "user1", "bot1");
+    // convertChatHistory("", "", "bot1");
+    // prepareFeedback("", "user1", "bot1");
 
     startConnectionToBot();
     // receiveActivitiesFromBot(id);

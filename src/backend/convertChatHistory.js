@@ -21,13 +21,14 @@ function isEven(n) {
  
 
 export function convertChatHistory  (data, chatbotID, userID) {
-    var inputJson = '{"activities":[{"type":"message","channelId":"directline","conversation":{"id":"abc123"},"id":"abc123|0000","from":{"id":"user1"},"text":"hello"},{"type":"message","channelId":"directline","conversation":{"id":"abc123"},"id":"abc123|0001","from":{"id":"bot1"},"text":"Nice to see you, user1!"}],"watermark":"0001a-95"}';
-    //TODO: change inputjson to data after json file is good 
-    var chatHistoryJson = JSON.parse(inputJson);
+    // var inputJson = '{"activities":[{"type":"message","channelId":"directline","conversation":{"id":"abc123"},"id":"abc123|0000","from":{"id":"user1"},"text":"hello"},{"type":"message","channelId":"directline","conversation":{"id":"abc123"},"id":"abc123|0001","from":{"id":"bot1"},"text":"Nice to see you, user1!"}],"watermark":"0001a-95"}';
+    //TODO: change inputjson to data after json file is good
+    // console.log("uaskdhksajdhsak " + Object.keys(data).length);
+    var chatHistoryJson = data;
     var requestBodyForTextAnalytics = {};
     var requestBodyForTextAnalyticsDocuments = [];
 
-    for (var i = 0; i < chatHistoryJson.activities.length; i++){
+    for (var i = 0; i < Object.keys(chatHistoryJson.activities).length; i++){
         var activity = chatHistoryJson.activities[i];
         var text = activity.text;
         var from = activity.from.id;
