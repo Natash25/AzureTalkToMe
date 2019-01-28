@@ -18,14 +18,16 @@ export default class DisplayReferralCard extends React.Component {
                         title="Referrals"
                         value={this.referrals}
                     />
-                    <Button
-                        style={{ marginTop: 16 }}
-                        type="primary"
-                        onClick={this.referFriend()}
-                        htmlType={'button'}
-                    >
-                        Refer a friend!
-                    </Button>
+                    <a href={'mailto:?subject=Check out Azure Talk!&body=Improve personal communication abilities and confidence based on iterative feedback from azuretalktome.azurewebsites.net!'}>
+                        <Button
+                            style={{ marginTop: 16 }}
+                            type="primary"
+                            onClick={this.referFriend()}
+                            htmlType={'button'}
+                        >
+                            Refer a friend!
+                        </Button>
+                    </a>
                 </Card>
             </div>
         );

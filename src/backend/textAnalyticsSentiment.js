@@ -92,7 +92,7 @@ export function computeRank(overallScore) {
 export function getMessage(score) {
     let msg = '';
     if (score < 0.4) {
-        msg = 'Your tone tells me that you do not feel so confident. Remember to breath! Slow down, stand up straight and end on a downbeat!';
+        msg = 'Your tone tells me that you do not feel very confident. Remember to breath! Slow down, stand up straight and end on a downbeat!';
     } else if (score < 0.6) {
         msg = 'I hear a little uncertainty in your voice. If you feel rushed, try taking a deep breath.';
     } else if (score < 0.8) {

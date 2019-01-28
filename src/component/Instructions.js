@@ -11,8 +11,8 @@ export default class Instructions extends React.Component {
                 <div
                     style={{textAlign: 'left'}}
                 >
-                    Navigate to the 'Chat' tab to begin.
-                    Begin the conversation by saying "Hello!"
+                    Navigate to the 'Chat' tab on the sidebar to the left to begin.
+                    Initiate the conversation by saying "Hello!"
                     When you are finished, end the conversation by saying "Goodbye."
                     <br/><br/>
                     <div
