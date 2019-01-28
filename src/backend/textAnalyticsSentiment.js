@@ -1,8 +1,37 @@
 // todo: delete / refactor, refer to DisplayStatCard.js
 
 
-export const requestToTextAnalytics = function() {
+const temp = {
+    "documents": [{
+        "language": "en",
+        "id": "1",
+        "text": "We love this trail and make the trip every year. The views are breathtaking and well worth the hike!"
+    },
+        {
+            "language": "en",
+            "id": "2",
+            "text": "Poorly marked trails! I thought we were goners. Worst hike ever."
+        },
+        {
+            "language": "en",
+            "id": "3",
+            "text": "Everyone in my family liked the trail but thought it was too challenging for the less athletic among us. Not necessarily recommended for small children."
+        },
+        {
+            "language": "en",
+            "id": "4",
+            "text": "It was foggy so we missed the spectacular views, but the trail was ok. Worth checking out if you are in the area."
+        },
+        {
+            "language": "en",
+            "id": "5",
+            "text": "This is my favorite trail. It has beautiful views and many places to stop and rest"
+        }
+    ]
+};
 
+export function requestToTextAnalytics(body) {
+    // todo: use body param, not hardcoded temp const
     fetch('https://centralus.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment', {
         method: 'POST',
         headers: {
@@ -11,35 +40,7 @@ export const requestToTextAnalytics = function() {
             'Content-Type': 'application/json',
             'Ocp-Apim-Subscription-Key': 'd89d45bffb674f788bc3be1ad2e55963',
         },
-        body: JSON.stringify({
-                "documents": [{
-                    "language": "en",
-                    "id": "1",
-                    "text": "We love this trail and make the trip every year. The views are breathtaking and well worth the hike!"
-                },
-                    {
-                        "language": "en",
-                        "id": "2",
-                        "text": "Poorly marked trails! I thought we were goners. Worst hike ever."
-                    },
-                    {
-                        "language": "en",
-                        "id": "3",
-                        "text": "Everyone in my family liked the trail but thought it was too challenging for the less athletic among us. Not necessarily recommended for small children."
-                    },
-                    {
-                        "language": "en",
-                        "id": "4",
-                        "text": "It was foggy so we missed the spectacular views, but the trail was ok. Worth checking out if you are in the area."
-                    },
-                    {
-                        "language": "en",
-                        "id": "5",
-                        "text": "This is my favorite trail. It has beautiful views and many places to stop and rest"
-                    }
-                ]
-            }
-        )
+        body: JSON.stringify(temp)
 
     })
         .then(response => response.json())
@@ -47,12 +48,14 @@ export const requestToTextAnalytics = function() {
             console.log('Request succeeded with JSON response', data);  // Prints result from `response.json()`
             let sentences = analyzeSentences(data);
             let overallScore = computeOverallScore(data);
-            let rank = computeRank(overallScore);
+            // let rank = computeRank(overallScore);
             let analytics = { sentences: sentences, overallScore: overallScore};
-            return renderAnalytics(analytics, rank);
+            // return renderAnalytics(analytics, rank);
+            // console.log("what up guys!!! " + JSON.stringify(analytics));
+            return analytics;
         })
         .catch(error => console.error(error))
-};
+}
 
 function analyzeSentences(data) {
     let temp = data.documents;
@@ -60,12 +63,12 @@ function analyzeSentences(data) {
     let analytics = {};
     for (let i = 0; i < length; i++) {
         let obj = temp[i];
-        console.log(obj);
+        // console.log(obj);
 
         let score = parseFloat(obj['score']);
         let msg = getMessage(score);
         analytics[obj.id.toString()] = msg;
-        console.log(obj.id + ', ' + obj.score + ', ' + msg);
+        // console.log(obj.id + ', ' + obj.score + ', ' + msg);
     }
     return analytics;
 }
@@ -82,7 +85,7 @@ function computeOverallScore(data) {
     return sum / length;
 }
 
-function computeRank(overallScore) {
+export function computeRank(overallScore) {
     return parseInt((overallScore * 10).toString());
 }
 
@@ -100,7 +103,7 @@ export function getMessage(score) {
     return msg;
 }
 
-function renderAnalytics(analytics, rank) {
+function renderAnalytics(analytics) {
     // console.log(JSON.stringify(analytics));
     let div = document.getElementById("render-here");
 
@@ -121,7 +124,4 @@ function renderAnalytics(analytics, rank) {
     div.appendChild(scoreNode);
     div.appendChild(br);
     div.appendChild(msgNode);
-
-    let rankElement = document.getElementById('rank');
-    rankElement.innerText = 'Level ' + rank;
 }

@@ -8,24 +8,6 @@
 </head>
 <body style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:13px;">
 <div id="root"></div>
-<!--<div id="webchat" role="main"></div>-->
-<script type="text/babel">
-    (async function() {
-        const res = await fetch('https://webchat-mockbot.azurewebsites.net/directline/token', { method: 'POST' });
-        const { token } = await res.json();
-
-        const webchatDiv = await document.getElementById('webchat');
-
-        console.log("do we even get here?");
-        window.WebChat.renderWebChat({
-            directLine: window.WebChat.createDirectLine({secret: 'aNNM2PiaSdo.cwA.EP0.cBRSLtHR5MwtK0Q4Yf1YFjIDTraiw0Fqun6iExHqYXo'}),
-            userID: 'default-user'
-        }, webchatDiv);
-        document.querySelector('#webchat > *').focus();
-    })().catch(err => console.error(err));
-
-
-</script>
 <!--<script>-->
     <!--import WebChat from "../src/App";-->
 

@@ -6,7 +6,6 @@ import Sidebar from "./component/Sidebar";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import DisplayStatCard from "./component/DisplayStatCard";
 import Instructions from "./component/Instructions.js"
-import { requestToTextAnalytics } from "./component/DisplayStatCard.js";
 import { convertChatHistory } from "./backend/convertChatHistory.js";
 import { prepareFeedback } from "./backend/convertChatHistory.js";
 import { startConnectionToBot } from './backend/startConnectionToBot.js';
@@ -15,7 +14,6 @@ const {Footer, Sider, Content} = Layout;
 
 export default class App extends React.Component {
     render() {
-        requestToTextAnalytics();
         convertChatHistory("", "user1", "bot1");
         prepareFeedback("", "user1", "bot1");
         startConnectionToBot();
@@ -70,6 +68,7 @@ function Chat() {
                 style={{fontSize: "35px", padding: '20px'}}>
                 Try saying "Hello!"
             </div>
+            <DisplayStatCard />
             <div id="webchat" role="main"></div>
         </div>
 
@@ -91,7 +90,7 @@ function Profile() {
                 icon="user"
             />
             <br /><br />
-            <DisplayStatCard />
+            {/*<DisplayStatCard />*/}
         </div>
     );
 }
@@ -103,7 +102,6 @@ function WebChat() {
 
         const webchatDiv = await document.getElementById('webchat');
 
-        console.log("do we even get here?");
         window.WebChat.renderWebChat({
             directLine: window.WebChat.createDirectLine({secret: token}),
             userID: 'default-user'
