@@ -1,5 +1,5 @@
+// todo: migrate, then delete (unused)
 
-// todo: migrate, then delete
 import * as React from 'react';
 import UserProfile from "./UserProfile";
 import DisplayStatCard from "./DisplayStatCard.js";

@@ -1,3 +1,5 @@
+// todo: delete
+
 import React from 'react';
 import { Avatar } from "antd";
 
@@ -11,5 +13,3 @@ export default class UserProfile extends React.Component {
         );
     }
 }
-
-// todo: delete

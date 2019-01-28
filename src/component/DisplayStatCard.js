@@ -1,3 +1,5 @@
+// todo: refactor
+
 import React from 'react';
 import {Statistic, Card, Row, Col, Icon} from 'antd';
 

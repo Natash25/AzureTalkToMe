@@ -65,7 +65,11 @@ function Chat() {
     WebChat();
     return (
         <div>
-            <h1>Try saying "Hello!"</h1>
+            <div
+                className='chat-title'
+                style={{fontSize: "35px", padding: '20px'}}>
+                Try saying "Hello!"
+            </div>
             <div id="webchat" role="main"></div>
         </div>
 
@@ -75,8 +79,18 @@ function Chat() {
 function Profile() {
     return (
         <div className="Profile">
-            <Avatar style={{ backgroundColor: '#87d068', fontSize: '30px'}} icon="user"/>
-            <div className='UserName' style={{fontSize: "20px"}}>Bob Alex</div>
+            <div
+                className='profile-title'
+                style={{fontSize: "35px", padding: '20px 20px 0 20px'}}>
+                Bob Alex
+            </div>
+            <Avatar
+                style={{backgroundColor: '#87d068'}}
+                // shape="square"
+                size={64}
+                icon="user"
+            />
+            <br /><br />
             <DisplayStatCard />
         </div>
     );
@@ -96,14 +110,5 @@ function WebChat() {
         }, webchatDiv);
         document.querySelector('#webchat > *').focus();
     })().catch(err => console.error(err));
-
-    // console.log("do we even get here?");
-    // window.WebChat.renderWebChat({
-    //     directLine: window.WebChat.createDirectLine({secret: 'aNNM2PiaSdo.cwA.EP0.cBRSLtHR5MwtK0Q4Yf1YFjIDTraiw0Fqun6iExHqYXo'}),
-    //     userID: 'default-user'
-    // }, document.getElementById('webchat'));
-    // const speechOptions = {
-    //     speechRecognizer: new WebChat.Speech.BrowserSpeechRecognizer(),
-    //     speechSynthesizer: new WebChat.Speech.BrowserSpeechSynthesizer()
-    // };
+    // aNNM2PiaSdo.cwA.EP0.cBRSLtHR5MwtK0Q4Yf1YFjIDTraiw0Fqun6iExHqYXo
 }

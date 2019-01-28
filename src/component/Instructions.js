@@ -11,12 +11,15 @@ export default class Instructions extends React.Component {
                 <div
                     style={{textAlign: 'left'}}
                 >
-                    <h4>Dashboard</h4>
-                    <p>Card content</p>
-                    <h4>Chat</h4>
-                    <p>Card content</p>
-                    <h4>Profile</h4>
-                    <p>Card content</p>
+                    Navigate to the 'Chat' tab to begin.
+                    Begin the conversation by saying "Hello!"
+                    When you are finished, end the conversation by saying "Goodbye."
+                    <br/><br/>
+                    <div
+                        style={{textAlign: 'center', fontSize: 16, fontStyle: 'italic'}}
+                    >
+                        Happy chatting!
+                    </div>
                 </div>
             </Card>
         );
