@@ -1,19 +1,7 @@
-import { Statistic, Card, Row, Col, Icon } from 'antd';
+import React from 'react';
+import {Statistic, Card, Row, Col, Icon} from 'antd';
 
-import React, { Component } from 'react';
-import {Avatar} from "antd";
-import { randomBytes } from 'crypto';
-
-// export function status(response) {
-//     if (response.status >= 200 && response.status < 300) {
-//         return Promise.resolve(response);
-//     } else {
-//         return Promise.reject(new Error(response.statusText));
-//     }
-// }
-
-
- export function requestToTextAnalytics (){
+export function requestToTextAnalytics() {
 
     fetch('https://centralus.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment', {
         method: 'POST',
@@ -54,28 +42,17 @@ import { randomBytes } from 'crypto';
         )
 
     })
-        // .then( this.status)
+    // .then( this.status)
         .then(response => response.json())
         .then(function (data) {
             console.log('Request succeeded with JSON response', data);  // Prints result from `response.json()`
-            let sentences =this.analyzeSentences(data);
+            let sentences = this.analyzeSentences(data);
             let overallScore = this.computeOverallScore(data);
             let rank = this.computeRank(overallScore);
-            // console.log(overallScore);
-            let analytics = { sentences: sentences, overallScore: overallScore};
+            let analytics = {sentences: sentences, overallScore: overallScore};
             return renderAnalytics(analytics);
-            // return analytics; // [analyzeSentences(data), computeOverallScore(data)];
         })
         .catch(error => console.error(error))
-
-    // .then(data => {
-    //   let sentiments = data.results.map((feeling) => {
-    //     return(
-    //       <div key={feeling.results}>
-    //       feeling.
-    //     )
-    //   })
-    // })
 }
 
 export function analyzeSentences(data) {
@@ -94,7 +71,7 @@ export function analyzeSentences(data) {
     return analytics;
 }
 
- export function computeOverallScore(data) {
+export function computeOverallScore(data) {
     let temp = data.documents;
     let length = Object.keys(temp).length;
     let sum = 0;
@@ -103,13 +80,14 @@ export function analyzeSentences(data) {
         sum += parseFloat(obj['score']);
         console.log('sum = ' + sum);
     }
-    this.setState({overallScore : (sum/length)});
+    this.setState({overallScore: (sum / length)});
 }
 
- export function computeRank(overallScore) {
+export function computeRank(overallScore) {
     return parseInt((overallScore * 10).toString());
 }
-  function getMessage(score) {
+
+function getMessage(score) {
     let msg = '';
     if (score < 0.4) {
         msg = 'Your tone tells me that you do not feel so confident. Remember to breath! Slow down, stand up straight and end on a downbeat!';
@@ -123,7 +101,8 @@ export function analyzeSentences(data) {
 
     this.setState({message: msg});
 }
- export function renderAnalytics(analytics, rank) {
+
+export function renderAnalytics(analytics, rank) {
     // console.log(JSON.stringify(analytics));
     let div = document.getElementById("render-here");
 
@@ -148,84 +127,80 @@ export function analyzeSentences(data) {
     let rankElement = document.getElementById('rank');
     rankElement.innerText = 'Level ' + rank;
 }
-    
+
 
 export default class DisplayStatCard extends React.Component {
 
-   state = {
-    currentScore: 0,
-    level: "",
-    message: "",
-    icons: <div></div>
-   }
-// import React, {Component} from 'react';
-//
-// class textAnalyticsSentiment extends Component {
-//   constructor() {
-//     super();
-//     this.state = {
-//       array: [],
-//     };
-//   }
-formatArrow(currentScore){
-    if(currentScore >= 0){
-        return <Icon type="arrow-up" />
-    }
-    return <Icon type="arrow-down" />
-}
+    state = {
+        currentScore: 0,
+        level: "",
+        message: "",
+        icons: <div></div>
+    };
 
-updateScore = () => {
-    //Updating score
-    this.setState({ currentScore: Math.random(0, 1), icons: this.formatArrow(this.state.currentScore), level: (parseInt( this.state.level+1))},
-    ()=>{this.updateMessage(this.state.currentScore)});
+    formatArrow(currentScore) {
+        if (currentScore >= 0) {
+            return <Icon type="arrow-up"/>
+        }
+        return <Icon type="arrow-down"/>
     }
 
-updateMessage = (score)=>{
-    let msg ='';
-    if (score < 0.4) {
-        msg = 'Your tone tells me that you do not feel so confident. Remember to breath! Slow down, stand up straight and end on a downbeat!';
-    } else if (score < 0.6) {
-        msg = 'I hear a little uncertainty in your voice. If you feel rushed, try taking a deep breath.';
-    } else if (score < 0.8) {
-        msg = 'Just a little more! Get that confidence booming!';
-    } else {
-        msg = 'You sound very confident! Keep it up!';
+    updateScore = () => {
+        //Updating score
+        this.setState({
+                currentScore: Math.random(0, 1),
+                icons: this.formatArrow(this.state.currentScore),
+                level: (parseInt(this.state.level + 1))
+            },
+            () => {
+                this.updateMessage(this.state.currentScore)
+            });
     }
-    this.setState({message: msg});
-}
+
+    updateMessage = (score) => {
+        let msg = '';
+        if (score < 0.4) {
+            msg = 'Your tone tells me that you do not feel so confident. Remember to breath! Slow down, stand up straight and end on a downbeat!';
+        } else if (score < 0.6) {
+            msg = 'I hear a little uncertainty in your voice. If you feel rushed, try taking a deep breath.';
+        } else if (score < 0.8) {
+            msg = 'Just a little more! Get that confidence booming!';
+        } else {
+            msg = 'You sound very confident! Keep it up!';
+        }
+        this.setState({message: msg});
+    };
 
 
-
-
-render(){
-    return(
-        <div style={{ background: '#ECECEC', padding: '30px' }} onClick={this.updateScore}>
-        <Row gutter={16}>
-            <Col span={12}>
-                <Card>
-                    <Statistic
-                        title="Your current score: "
-                        value={this.state.currentScore}
-                        precision={2}
-                        valueStyle={{ color: '#3f8600' }}
-                        prefix={this.state.icons}
-                    />
-                </Card>
-            </Col>
-            <Col span={12}>
-                <Card>
-                    <Statistic
-                        title="Your current level"
-                        value={this.state.level}
-                        precision={1}
-                        valueStyle={{ color: '#3f8600' }}
-                        prefix={this.state.icons}
-                    />
-                </Card>
-            </Col>
-        </Row>
-        <br /><br />
-        <div style={{alignContent: 'center', fontSize: "30px", fontWeight: 'bold'}}>{this.state.message}</div>
-    </div>);
+    render() {
+        return (
+            <div style={{background: '#ECECEC', padding: '30px'}} onClick={this.updateScore}>
+                <Row gutter={16}>
+                    <Col span={12}>
+                        <Card>
+                            <Statistic
+                                title="Your current score: "
+                                value={this.state.currentScore}
+                                precision={2}
+                                valueStyle={{color: '#3f8600'}}
+                                prefix={this.state.icons}
+                            />
+                        </Card>
+                    </Col>
+                    <Col span={12}>
+                        <Card>
+                            <Statistic
+                                title="Your current level"
+                                value={this.state.level}
+                                precision={1}
+                                valueStyle={{color: '#3f8600'}}
+                                prefix={this.state.icons}
+                            />
+                        </Card>
+                    </Col>
+                </Row>
+                <br/><br/>
+                <div style={{alignContent: 'center', fontSize: "30px", fontWeight: 'bold'}}>{this.state.message}</div>
+            </div>);
     }
 }

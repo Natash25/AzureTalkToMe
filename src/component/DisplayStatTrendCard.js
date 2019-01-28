@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import {Avatar, Button, Col, Row, Statistic} from "antd";
-// import React, {Component} from 'react';
-//
+import React from 'react';
+import { Button, Col, Row, Statistic } from "antd";
+
+
 // class textAnalyticsSentiment extends Component {
 //   constructor() {
 //     super();
@@ -9,7 +9,6 @@ import {Avatar, Button, Col, Row, Statistic} from "antd";
 //       array: [],
 //     };
 //   }
-
  
 
 export default class DisplayStatTrendCard extends React.Component {

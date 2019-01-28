@@ -1,10 +1,11 @@
+
+// todo: migrate, then delete
 import * as React from 'react';
 import UserProfile from "./UserProfile";
-import DisplayStatTrendCard from "./DisplayStatTrendCard";
 import DisplayStatCard from "./DisplayStatCard.js";
 import { requestToTextAnalytics } from "./DisplayStatCard.js";
-import {convertChatHistory} from "../backend/convertChatHistory.js";
-import {prepareFeedback} from "../backend/convertChatHistory.js";
+import { convertChatHistory } from "../backend/convertChatHistory.js";
+import { prepareFeedback } from "../backend/convertChatHistory.js";
 import { startConnectionToBot } from '../backend/startConnectionToBot.js';
 
 export default class Azure extends React.Component {
@@ -17,12 +18,15 @@ export default class Azure extends React.Component {
   
     startConnectionToBot();
     return (
-      <div> <div className='azure-title' style={{fontSize: "20px", padding: '20px'}}>Welcome to Azure Talk</div>
+      <div>
+          <div className='azure-title' style={{fontSize: "20px", padding: '20px'}}>Welcome to Azure Talk</div>
         <br /><br />
         <UserProfile />
         <DisplayStatCard />        
         <div id="render-here"></div>
-      </div>);
+      </div>
+    );
   }
 }
 //<Button type="primary" onClick={requestToTextAnalytics}>Get results!</Button>
+

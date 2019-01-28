@@ -1,5 +1,4 @@
-
-
+// todo: delete / refactor, refer to DisplayStatCard.js
 
 
 export const requestToTextAnalytics = function() {

@@ -1,125 +1,113 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Microsoft Cognitive Services Speech SDK JavaScript Quickstart</title>
-  <meta charset="utf-8" />
-  <!--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">-->
+    <title>Azure Talk</title>
+    <meta charset="utf-8"/>
+    <script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
+    <script src="SpeechSDK-JavaScript-1.2.1/microsoft.cognitiveservices.speech.sdk.bundle.js"></script>
 </head>
 <body style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:13px;">
-  <!-- <uidiv> -->
+<div id="root"></div>
+<!--<div id="webchat" role="main"></div>-->
+<script type="text/babel">
+    (async function() {
+        const res = await fetch('https://webchat-mockbot.azurewebsites.net/directline/token', { method: 'POST' });
+        const { token } = await res.json();
 
-  <!-- </uidiv> -->
+        const webchatDiv = await document.getElementById('webchat');
 
-  <!-- <speechsdkref> -->
-  <!-- Speech SDK reference sdk. -->
-  <script src="SpeechSDK-JavaScript-1.2.1/microsoft.cognitiveservices.speech.sdk.bundle.js"></script>
-  <!-- </speechsdkref> -->
+        console.log("do we even get here?");
+        window.WebChat.renderWebChat({
+            directLine: window.WebChat.createDirectLine({secret: 'aNNM2PiaSdo.cwA.EP0.cBRSLtHR5MwtK0Q4Yf1YFjIDTraiw0Fqun6iExHqYXo'}),
+            userID: 'default-user'
+        }, webchatDiv);
+        document.querySelector('#webchat > *').focus();
+    })().catch(err => console.error(err));
 
-  <!-- <authorizationfunction> -->
-  <!-- Speech SDK Authorization token -->
-  <script src="SpeechSDKAuthorization.js"></script>
 
-  <!-- </authorizationfunction> -->
+</script>
+<!--<script>-->
+    <!--import WebChat from "../src/App";-->
 
-  <!-- <quickstartcode> -->
-  <!-- Speech SDK USAGE -->
-  <script src="SpeechSDKUsage.js"></script>
-  <!-- </quickstartcode> -->
-  <div id="root"></div><script src="SpeechSDK-JavaScript-1.2.1/microsoft.cognitiveservices.speech.sdk.bundle.js"></script>
-  <div id="webchat" role="main"></div>
-  <script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
-  <script>
-      window.WebChat.renderWebChat({
-          directLine: window.WebChat.createDirectLine({ secret: 'aNNM2PiaSdo.cwA.EP0.cBRSLtHR5MwtK0Q4Yf1YFjIDTraiw0Fqun6iExHqYXo'}),
-          userID: 'default-user'
-      }, document.getElementById('webchat'));
-      const speechOptions = {
-          speechRecognizer: new WebChat.Speech.BrowserSpeechRecognizer(),
-          speechSynthesizer: new WebChat.Speech.BrowserSpeechSynthesizer()
-      };
-  </script>
-  <script>
-      import WebChat from "../src/App";
-
-      const params = WebChat.queryParams(location.search);
-      const user = {
-          id: params['userid'] || 'userid',
-          name: params['username'] || 'username'
-      };
-      const bot = {
-          id: params['botid'] || 'botid',
-          name: params['botname'] || 'botname'
-      };
-      window.botchatDebug = params['debug'] && params['debug'] === 'true';
-      // // Option 1: No speech
-      //
-      // const speechOptions = null;
-      // // Option 2: Native browser speech (not supported by all browsers, no speech recognition priming support)
-      //
-      // Note that Chrome automatically blocks speech if the HTML file is loaded from disk. You can run a server locally
-      // or launch Chrome (close all the existing Chrome browsers) with the following option:
-      // chrome.exe --allow-file-access-from-files <sampleHtmlFile>
-      //
-      const speechOptions = {
-          speechRecognizer: new WebChat.Speech.BrowserSpeechRecognizer(),
-          speechSynthesizer: new WebChat.Speech.BrowserSpeechSynthesizer()
-      };
-      // // Option 3: Cognitive Services speech recognition using API key (cross browser, speech priming support)
-      //
-      /*
-      const speechOptions = {
-        speechRecognizer: new CognitiveServices.SpeechRecognizer({ subscriptionKey: 'YOUR_COGNITIVE_SPEECH_API_KEY' }),
-        speechSynthesizer: new CognitiveServices.SpeechSynthesizer({
-          gender: CognitiveServices.SynthesisGender.Female,
-          subscriptionKey: 'YOUR_COGNITIVE_SPEECH_API_KEY',
-          voiceName: 'Microsoft Server Speech Text to Speech Voice (en-US, JessaRUS)'
-        })
-      };
-      */
-      //
-      // // Option 4: Cognitive Services speech recognition using a token (usually generated in a secure backend using your API key)
-      //
-      // function getToken() {
-      //   // Normally this token fetch is done from your secured backend to avoid exposing the API key and this call
-      //   // would be to your backend, or to retrieve a token that was served as part of the original page.
-      //   return fetch(
-      //     'https://api.cognitive.microsoft.com/sts/v1.0/issueToken',
-      //     {
-      //       headers: {
-      //         'Ocp-Apim-Subscription-Key': 'YOUR_COGNITIVE_SPEECH_API_KEY'
-      //       },
-      //       method: 'POST'
-      //     }
-      //   ).then(res => res.text());
-      // }
-      // const speechOptions = {
-      //   speechRecognizer: new CognitiveServices.SpeechRecognizer({
-      //     fetchCallback: (authFetchEventId) => getToken(),
-      //     fetchOnExpiryCallback: (authFetchEventId) => getToken()
-      //   }),
-      //   speechSynthesizer: new BotChat.Speech.BrowserSpeechSynthesizer()
-      // };
-      // // Option 5: Your own custom implementations of ISpeechRecognizer and ISpeechSynthesizer
-      //
-      // const speechOptions = {
-      //   speechRecognizer: new YourOwnSpeechRecognizer(),
-      //   speechSynthesizer: new YourOwnSpeechSynthesizer()
-      // };
-      WebChat.App({
-          bot: bot,
-          locale: params['locale'],
-          resize: 'detect',
-          // sendTyping: true,    // defaults to false. set to true to send 'typing' activities to bot (and other users) when user is typing
-          speechOptions: speechOptions,
-          user: user,
-          directLine: {
-              domain: params['domain'],
-              secret: params['s'],
-              token: params['t'],
-              webSocket: params['webSocket'] && params['webSocket'] === 'true' // defaults to true
-          }
-      }, document.getElementById('BotChatGoesHere'));
-  </script>
+    <!--const params = WebChat.queryParams(location.search);-->
+    <!--const user = {-->
+        <!--id: params['userid'] || 'userid',-->
+        <!--name: params['username'] || 'username'-->
+    <!--};-->
+    <!--const bot = {-->
+        <!--id: params['botid'] || 'botid',-->
+        <!--name: params['botname'] || 'botname'-->
+    <!--};-->
+    <!--window.botchatDebug = params['debug'] && params['debug'] === 'true';-->
+    <!--// // Option 1: No speech-->
+    <!--//-->
+    <!--// const speechOptions = null;-->
+    <!--// // Option 2: Native browser speech (not supported by all browsers, no speech recognition priming support)-->
+    <!--//-->
+    <!--// Note that Chrome automatically blocks speech if the HTML file is loaded from disk. You can run a server locally-->
+    <!--// or launch Chrome (close all the existing Chrome browsers) with the following option:-->
+    <!--// chrome.exe &#45;&#45;allow-file-access-from-files <sampleHtmlFile>-->
+    <!--//-->
+    <!--const speechOptions = {-->
+        <!--speechRecognizer: new WebChat.Speech.BrowserSpeechRecognizer(),-->
+        <!--speechSynthesizer: new WebChat.Speech.BrowserSpeechSynthesizer()-->
+    <!--};-->
+    <!--// // Option 3: Cognitive Services speech recognition using API key (cross browser, speech priming support)-->
+    <!--//-->
+    <!--/*-->
+    <!--const speechOptions = {-->
+      <!--speechRecognizer: new CognitiveServices.SpeechRecognizer({ subscriptionKey: 'YOUR_COGNITIVE_SPEECH_API_KEY' }),-->
+      <!--speechSynthesizer: new CognitiveServices.SpeechSynthesizer({-->
+        <!--gender: CognitiveServices.SynthesisGender.Female,-->
+        <!--subscriptionKey: 'YOUR_COGNITIVE_SPEECH_API_KEY',-->
+        <!--voiceName: 'Microsoft Server Speech Text to Speech Voice (en-US, JessaRUS)'-->
+      <!--})-->
+    <!--};-->
+    <!--*/-->
+    <!--//-->
+    <!--// // Option 4: Cognitive Services speech recognition using a token (usually generated in a secure backend using your API key)-->
+    <!--//-->
+    <!--// function getToken() {-->
+    <!--//   // Normally this token fetch is done from your secured backend to avoid exposing the API key and this call-->
+    <!--//   // would be to your backend, or to retrieve a token that was served as part of the original page.-->
+    <!--//   return fetch(-->
+    <!--//     'https://api.cognitive.microsoft.com/sts/v1.0/issueToken',-->
+    <!--//     {-->
+    <!--//       headers: {-->
+    <!--//         'Ocp-Apim-Subscription-Key': 'YOUR_COGNITIVE_SPEECH_API_KEY'-->
+    <!--//       },-->
+    <!--//       method: 'POST'-->
+    <!--//     }-->
+    <!--//   ).then(res => res.text());-->
+    <!--// }-->
+    <!--// const speechOptions = {-->
+    <!--//   speechRecognizer: new CognitiveServices.SpeechRecognizer({-->
+    <!--//     fetchCallback: (authFetchEventId) => getToken(),-->
+    <!--//     fetchOnExpiryCallback: (authFetchEventId) => getToken()-->
+    <!--//   }),-->
+    <!--//   speechSynthesizer: new BotChat.Speech.BrowserSpeechSynthesizer()-->
+    <!--// };-->
+    <!--// // Option 5: Your own custom implementations of ISpeechRecognizer and ISpeechSynthesizer-->
+    <!--//-->
+    <!--// const speechOptions = {-->
+    <!--//   speechRecognizer: new YourOwnSpeechRecognizer(),-->
+    <!--//   speechSynthesizer: new YourOwnSpeechSynthesizer()-->
+    <!--// };-->
+    <!--WebChat.App({-->
+        <!--bot: bot,-->
+        <!--locale: params['locale'],-->
+        <!--resize: 'detect',-->
+        <!--// sendTyping: true,    // defaults to false. set to true to send 'typing' activities to bot (and other users) when user is typing-->
+        <!--speechOptions: speechOptions,-->
+        <!--user: user,-->
+        <!--directLine: {-->
+            <!--domain: params['domain'],-->
+            <!--secret: params['s'],-->
+            <!--token: params['t'],-->
+            <!--webSocket: params['webSocket'] && params['webSocket'] === 'true' // defaults to true-->
+        <!--}-->
+    <!--}, document.getElementById('BotChatGoesHere'));-->
+<!--</script>-->
 
 </body>
 </html>

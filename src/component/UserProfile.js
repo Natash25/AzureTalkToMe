@@ -1,9 +1,7 @@
 import React from 'react';
-import {Avatar} from "antd";
+import { Avatar } from "antd";
 
 export default class UserProfile extends React.Component {
-
-
     render() {
         return (
             <div className="UserProfile">
@@ -14,3 +12,4 @@ export default class UserProfile extends React.Component {
     }
 }
 
+// todo: delete
