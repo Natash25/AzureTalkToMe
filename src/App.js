@@ -5,6 +5,8 @@ import Layout from "antd/es/layout/layout";
 import Sidebar from "./component/Sidebar";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import DisplayStatCard from "./component/DisplayStatCard";
+import DisplayStatTrendCard from "./component/DisplayStatTrendCard";
+import DisplayReferralCard from "./component/DisplayReferralCard";
 import Instructions from "./component/Instructions.js"
 import { convertChatHistory } from "./backend/convertChatHistory.js";
 import { prepareFeedback } from "./backend/convertChatHistory.js";
@@ -55,6 +57,8 @@ function Dashboard() {
             </div>
             <br/>
             <Instructions/>
+            <br/>
+            <DisplayStatTrendCard/>
         </div>
     );
 }
@@ -90,7 +94,7 @@ function Profile() {
                 icon="user"
             />
             <br /><br />
-            {/*<DisplayStatCard />*/}
+            <DisplayReferralCard/>
         </div>
     );
 }
