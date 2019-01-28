@@ -1,7 +1,7 @@
 // todo: migrate, then delete (unused)
 
 import * as React from 'react';
-import UserProfile from "./UserProfile";
+// import UserProfile from "./UserProfile";
 import DisplayStatCard from "./DisplayStatCard.js";
 // import { requestToTextAnalytics } from "./DisplayStatCard.js";
 import { convertChatHistory } from "../backend/convertChatHistory.js";
@@ -21,7 +21,7 @@ export default class Azure extends React.Component {
       <div>
           <div className='azure-title' style={{fontSize: "20px", padding: '20px'}}>Welcome to Azure Talk</div>
         <br /><br />
-        <UserProfile />
+        {/*<UserProfile />*/}
         <DisplayStatCard />        
         <div id="render-here"></div>
       </div>
